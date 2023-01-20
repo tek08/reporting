@@ -42,7 +42,7 @@ main() {
       mockStdio = MockStdio();
       mockUsage = MockUsage();
       when(mockUsage.isFirstRun).thenReturn(false);
-      mockClock = MockClock();
+      mockClock = MockSystemClock();
       when(mockClock.now()).thenAnswer((Invocation _) =>
           DateTime.fromMillisecondsSinceEpoch(mockTimes.removeAt(0)));
     });
@@ -52,7 +52,8 @@ main() {
       mockTimes = <int>[kMillis];
       // Since FLUTTER_ANALYTICS_LOG_FILE is set in the environment, analytics
       // will be written to a file.
-      final Usage usage = Usage(kAnalyticsUA, kSettings,versionOverride: 'test');
+      final Usage usage =
+          Usage(kAnalyticsUA, kSettings, versionOverride: 'test');
       usage.suppressAnalytics = false;
       usage.enabled = true;
 

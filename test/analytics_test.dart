@@ -36,7 +36,7 @@ void main() {
       tempDir = fs.systemTempDirectory
           .createTempSync('flutter_tools_analytics_test.');
       mockFlutterConfig = MockFlutterConfig();
-      mockClock = MockClock();
+      mockClock = MockSystemClock();
       when(mockClock.now()).thenAnswer((Invocation _) =>
           DateTime.fromMillisecondsSinceEpoch(mockTimes.removeAt(0)));
     });
@@ -162,7 +162,7 @@ void main() {
       mockStdio = MockStdio();
       mockUsage = MockUsage();
       when(mockUsage.isFirstRun).thenReturn(false);
-      mockClock = MockClock();
+      mockClock = MockSystemClock();
 //      mockDoctor = MockDoctor();
       when(mockClock.now()).thenAnswer((Invocation _) =>
           DateTime.fromMillisecondsSinceEpoch(mockTimes.removeAt(0)));
